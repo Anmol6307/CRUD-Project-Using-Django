@@ -1,0 +1,53 @@
+{% extends 'crud/base.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-sm-4">
+    <h3 class="text-center alert alert-info">Add Details</h3>
+    <form action="" method="POST">
+        <div class="form-control bg-dark text-white" >
+            {% csrf_token %}
+            {{form.as_p}}     
+            <input type="submit" class="btn btn-warning form-control my-2 text-white">
+        </div>
+    </div>
+    </form>
+    <div class="col-sm-7 offset-1">
+        <h3 class="text-center alert alert-info">Show User Information</h3>
+        {% if udt %}
+         <table class="table table-hover">
+            <thead>
+                <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Password</th>
+                <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+               {% for dt in udt %} 
+                <tr>
+                <th scope="row">{{dt.id}}</th>
+                <td>{{dt.name}}</td>
+                <td>{{dt.email}}</td>
+                <td>{{dt.password}}</td>
+                <td>
+                  <a href="{% url 'editdata' dt.id %}" class="btn btn-primary">Edit</a>
+                  <form action="{% url 'deletedata' dt.id %}" method="POST" class="d-inline">
+                    {% csrf_token %}
+                    <input type="submit" class="btn btn-danger" value="Delete">
+                  </form>
+                </td>
+                </tr>
+               {% endfor %}
+            </tbody>
+         </table>
+        {% else %}
+         <h3 class="text-center alert alert-danger">No Records Found</h3>
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}
+
+
