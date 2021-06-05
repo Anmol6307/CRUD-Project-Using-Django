@@ -31,6 +31,7 @@ def Update_Data(request, id):
             pw = fm.cleaned_data['password']
             reg= User(name=nm, email=em, password=pw)
             reg.save()
+        return HttpResponseRedirect('/')
     else:
         pi = User.objects.get(pk=id)  
         fm = UserRegistration(instance=pi)
