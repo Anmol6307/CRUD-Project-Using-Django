@@ -14,3 +14,4 @@ class UserRegistration(forms.ModelForm):
         }
         
         
+        

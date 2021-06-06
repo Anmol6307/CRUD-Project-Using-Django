@@ -16,7 +16,7 @@ def Add_Show(request):
             reg.save()
         return HttpResponseRedirect('/')
     else:
-        fm = UserRegistration()
+        fm = UserRegistration(label_suffix='')
     userdata = User.objects.all()
     return render(request, 'crud/addandshow.html', {'form': fm, 'udt': userdata})
 
@@ -31,7 +31,7 @@ def Update_Data(request, id):
         return HttpResponseRedirect('/')
     else:
         pi = User.objects.get(pk=id)  
-        fm = UserRegistration(instance=pi)
+        fm = UserRegistration(instance=pi, label_suffix='')
     return render(request, 'crud/updatedetails.html', {'form':fm})
 
 # Delete Function
