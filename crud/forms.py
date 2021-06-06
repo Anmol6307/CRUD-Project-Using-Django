@@ -13,3 +13,4 @@ class UserRegistration(forms.ModelForm):
           'password': forms.PasswordInput(render_value=True, attrs={'class':'form-control', 'placeholder':'Enter Your Password'}),
         }
         
+        

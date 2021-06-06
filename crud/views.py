@@ -14,6 +14,7 @@ def Add_Show(request):
             pw = fm.cleaned_data['password']
             reg= User(name=nm, email=em, password=pw)
             reg.save()
+        return HttpResponseRedirect('/')
     else:
         fm = UserRegistration()
     userdata = User.objects.all()
@@ -26,11 +27,7 @@ def Update_Data(request, id):
         pi = User.objects.get(pk=id)
         fm = UserRegistration(request.POST, instance=pi)
         if fm.is_valid():
-            nm = fm.cleaned_data['name']
-            em = fm.cleaned_data['email']
-            pw = fm.cleaned_data['password']
-            reg= User(name=nm, email=em, password=pw)
-            reg.save()
+            fm.save()
         return HttpResponseRedirect('/')
     else:
         pi = User.objects.get(pk=id)  
